@@ -23,7 +23,35 @@ Respond with exactly this structure:
 }
 
 Email subject: {{subject}}
-Email body: {{body}}`;
+Email body: {{body}}
+
+{
+  "department": "HR",
+  "priority": "P3",
+  "confidenceDepartment": 0.88,
+  "confidencePriority": 0.75,
+  "explanationDepartment": "Key phrases: leave policy, salary issue, HR related query",
+  "explanationPriority": "Key phrases: individual request, non-urgent",
+  "sentiment": "neutral"
+}
+
+Email subject: {{subject}}
+Email body: {{body}}
+
+{
+  "department": "Support",
+  "priority": "P2",
+  "confidenceDepartment": 0.92,
+  "confidencePriority": 0.8,
+  "explanationDepartment": "Key phrases: help needed, issue faced, customer support",
+  "explanationPriority": "Key phrases: user impacted, needs assistance",
+  "sentiment": "negative"
+}
+
+Email subject: {{subject}}
+Email body: {{body}}
+
+`;
 
 const SUMMARY_PROMPT = `Summarize the following support emails in 50-60 words. Write one short paragraph only. Do not use bullet points.
 
