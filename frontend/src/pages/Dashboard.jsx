@@ -331,12 +331,7 @@ export default function Dashboard() {
           </div>
 
           <div className="flex items-center gap-4">
-            {inboxStatus?.email && (
-              <div className="flex items-center gap-2 text-xs font-medium bg-green-50 text-green-700 px-3 py-1.5 rounded-full border border-green-200">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                {inboxStatus.email} • {inboxStatus.messageCount ?? '?'} messages
-              </div>
-            )}
+
             <button
               onClick={handleSync}
               disabled={isSyncing}
