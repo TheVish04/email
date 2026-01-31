@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Corporate App Design System - Light Mode */
+  --bg-dark: #F8FAFC;
+  /* clean white/gray background */
+  --bg-card: #FFFFFF;
+  /* white cards */
+  --text-primary: #1E293B;
+  /* slate-800 */
+  --text-muted: #64748B;
+  /* slate-500 */
+  --border: #E2E8F0;
+  /* slate-200 */
+  --accent: #3B82F6;
+  /* primary blue */
+  --accent-hover: #2563EB;
+  /* darker blue */
+  --cta: #F97316;
+  /* cta orange */
+  --cta-hover: #EA580C;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --transition-fast: 150ms ease;
+  --duration-enter: 250ms;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* Animations */
+@keyframes authCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalBackdropIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalPanelIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-auth-card-in {
+  animation: authCardIn var(--duration-enter) ease-out forwards;
+}
+
+.animate-modal-backdrop-in {
+  animation: modalBackdropIn 200ms ease-out forwards;
+}
+
+.animate-modal-panel-in {
+  animation: modalPanelIn 220ms ease-out forwards;
+}
+
+.animate-fade-slide-in {
+  animation: fadeSlideIn 200ms ease-out forwards;
+  animation-fill-mode: both;
+}
+
+.animate-spin-slow {
+  animation: spin 0.8s linear infinite;
+}
