@@ -1,7 +1,11 @@
 // In production (Vercel), use Render backend URL. Locally, use /api (proxied by Vite).
-const API_BASE = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api`
-  : '/api';
+function getApiBase() {
+  const url = import.meta.env.VITE_API_URL?.replace(/\/$/, '');
+  if (!url) return '/api';
+  const base = url.replace(/\/api$/, '');
+  return `${base}/api`;
+}
+const API_BASE = getApiBase();
 
 function getToken() {
   return localStorage.getItem('token');
