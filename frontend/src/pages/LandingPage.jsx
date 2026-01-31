@@ -229,12 +229,12 @@ const LandingPage = () => {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
                                 className={`
-                  relative p - 8 rounded - [var(--radius - lg)] border flex flex - col h - full
+                  relative p-8 rounded-[var(--radius-lg)] border flex flex-col h-full
                   ${plan.primary
                                         ? 'border-[var(--accent)] bg-[var(--bg-card)] shadow-2xl z-10 scale-100 md:scale-105'
                                         : 'border-[var(--border)] bg-[var(--bg-dark)] shadow-sm hover:shadow-lg hover:border-[var(--border)]/80'
                                     }
-transition - all duration - 300
+                  transition-all duration-300
     `}
                             >
                                 {plan.primary && (
@@ -251,13 +251,13 @@ transition - all duration - 300
                                 <ul className="space-y-3 mb-8 flex-1">
                                     {plan.features.map((item, j) => (
                                         <li key={j} className="flex items-start gap-3 text-sm">
-                                            <Check className={`w - 5 h - 5 shrink - 0 ${plan.primary ? 'text-[var(--accent)]' : 'text-[var(--text-muted)]'} `} />
+                                            <Check className={`w-5 h-5 shrink-0 ${plan.primary ? 'text-[var(--accent)]' : 'text-[var(--text-muted)]'} `} />
                                             <span>{item}</span>
                                         </li>
                                     ))}
                                 </ul>
                                 <button className={`
-w - full py - 3 rounded - [var(--radius - md)]font - semibold transition - all mt - auto
+                  w-full py-3 rounded-[var(--radius-md)] font-semibold transition-all mt-auto
                   ${plan.primary
                                         ? 'bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)] shadow-lg hover:shadow-[var(--accent)]/20'
                                         : 'bg-transparent border border-[var(--border)] hover:bg-[var(--border)]/50 text-[var(--text-primary)]'
