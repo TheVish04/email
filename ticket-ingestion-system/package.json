@@ -1,0 +1,29 @@
+{
+  "name": "ticket-ingestion-system",
+  "version": "1.0.0",
+  "description": "Unified Bun.js backend and React frontend for ticket ingestion",
+  "main": "src/backend/server.ts",
+  "scripts": {
+    "dev": "bun run --watch src/backend/server.ts",
+    "build:frontend": "vite build",
+    "start": "bun run src/backend/server.ts",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "mongoose": "^8.9.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.1.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^4.3.1",
+    "bun-types": "^1.1.20",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.4"
+  }
+}

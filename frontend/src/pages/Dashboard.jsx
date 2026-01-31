@@ -1,6 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { getStats, getSummary, getTickets, markSeen, generateBulkDraft, sendBulkReply, pollNow, getInboxStatus } from '../lib/api';
 import Card from '../components/Card';
 import Modal from '../components/Modal';
@@ -24,9 +22,6 @@ function parseEmailsInText(text) {
 }
 
 export default function Dashboard() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [stats, setStats] = useState(null);
   const [summary, setSummary] = useState('');
   const [tickets, setTickets] = useState([]);
@@ -77,11 +72,6 @@ export default function Dashboard() {
 
     return () => clearTimeout(delayDebounce);
   }, [filterIntensity, filterSentiment, filterDepartment, searchQuery, myTicketsOnly]);
-
-  function handleLogout() {
-    logout();
-    navigate('/login');
-  }
 
   async function openTicket(t) {
     setSelectedTicket(t);
@@ -265,64 +255,7 @@ export default function Dashboard() {
   const totalHeat = heatmap.critical.count + heatmap.high.count + heatmap.medium.count + heatmap.low.count;
 
   return (
-    <div className="flex min-h-screen bg-[var(--bg-dark)]">
-      {/* Sidebar */}
-      <aside
-        className={`bg-white border-r border-[var(--border)] flex flex-col transition-all duration-300 shadow-[var(--shadow-sm)] ${sidebarCollapsed ? 'w-16' : 'w-64'
-          }`}
-      >
-        <div className="p-4 flex items-center justify-between border-b border-[var(--border)] h-16">
-          {!sidebarCollapsed && <span className="font-bold text-lg text-[var(--text-primary)] tracking-tight">Mail<span className="text-[var(--accent)]">Mitra</span></span>}
-          <button
-            onClick={() => setSidebarCollapsed((c) => !c)}
-            className="p-1.5 rounded-md hover:bg-[var(--bg-dark)] text-[var(--text-muted)] transition-colors duration-200"
-            aria-label="Toggle sidebar"
-          >
-            {sidebarCollapsed ? (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-            ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
-            )}
-          </button>
-        </div>
-        <div className="p-4 border-b border-[var(--border)] bg-slate-50/50">
-          {!sidebarCollapsed && (
-            <>
-              <p className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Signed in as</p>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center font-bold">
-                  {user?.name?.charAt(0) || 'U'}
-                </div>
-                <p className="text-[var(--text-primary)] font-medium truncate">{user?.name || 'User'}</p>
-              </div>
-            </>
-          )}
-        </div>
-        <nav className="flex-1 p-3 space-y-1">
-          {!sidebarCollapsed && (
-            <ul className="space-y-1">
-              <li>
-                <a href="#dashboard" className="flex items-center gap-3 px-3 py-2.5 rounded-md bg-[var(--accent)]/10 text-[var(--accent)] font-semibold transition-colors">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
-                  Dashboard
-                </a>
-              </li>
-            </ul>
-          )}
-        </nav>
-        <div className="p-4 border-t border-[var(--border)]">
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center gap-2 rounded-md py-2.5 px-3 text-red-600 hover:bg-red-50 transition-colors font-medium"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
-            {!sidebarCollapsed && 'Sign Out'}
-          </button>
-        </div>
-      </aside>
-
-      {/* Main */}
-      <main className="flex-1 overflow-auto p-6">
+    <>
         {/* Header / Page title */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
@@ -822,7 +755,6 @@ export default function Dashboard() {
             </div>
           </div>
         </Modal>
-      </main>
-    </div>
+    </>
   );
 }

@@ -3,7 +3,8 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
-
+import NewTicket from './pages/NewTicket';
+import DashboardLayout from './layout/DashboardLayout';
 import LandingPage from './pages/LandingPage';
 
 function LoadingScreen() {
@@ -48,13 +49,15 @@ export default function App() {
           <Route path="/login" element={<LoginOrRedirect />} />
           <Route path="/register" element={<RegisterOrRedirect />} />
           <Route
-            path="/dashboard"
             element={
               <ProtectedRoute>
-                <Dashboard />
+                <DashboardLayout />
               </ProtectedRoute>
             }
-          />
+          >
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="new-ticket" element={<NewTicket />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>

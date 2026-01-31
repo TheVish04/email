@@ -99,11 +99,11 @@ export async function getTickets(params = {}) {
   return data;
 }
 
-export async function classify(subject, body) {
+export async function classify(subject, body, sender = '') {
   const res = await fetch(`${API_BASE}/classify`, {
     method: 'POST',
     headers: headers(),
-    body: JSON.stringify({ subject, body }),
+    body: JSON.stringify({ subject, body, sender }),
   });
   const data = await parseJsonResponse(res, 'Classification failed');
   if (!res.ok) throw new Error(data.error || 'Classification failed');
